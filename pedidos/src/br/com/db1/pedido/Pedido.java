@@ -8,22 +8,44 @@ public class Pedido {
 	private StatusPedido statusped = StatusPedido.ABERTO;
 	private Cliente cliente;
 	private List<Produto> itens = new ArrayList<>();
-	private List<Historico> historico = new ArrayList<>();
-	
-	private void novohistorico(StatusPedido status){
-		Historico historico = new Historico(status);
-		this.historico.add(historico);
-	}
+	private PedidoHistorico historico;
 
-	public Pedido(String numero, StatusPedido statusped, Cliente cliente, Produto produto){
+	public Pedido(String numero, Cliente cliente) {
+		Checker.naoDeveSerNulo(cliente, "cliente");
+		Checker.naoDeveSerNulo(numero, "numero");
+		Checker.statusDeveSerAtivo(cliente, "cliente");
+		
+		
 		this.numero = numero;
-		this.statusped = statusped;
+		this.statusped = StatusPedido.ABERTO;
 		this.cliente = cliente;
-		this.itens = (List<Produto>) produto;
+		this.historico = historico;
+
+	}
+	
+	public void addItem(){
 		
 	}
 	
+	public void removerItem(){
+		Checker.statusDeveSerAtivo(produto, "produto");
+		Checker.statusDeveSerAtivo(pedido, "pedido");
+	}
 	
-
+	public void  faturar(){
+		
+	}
+	
+	public void cancelar(){
+		
+	}
+	
+	public String getNumero() {
+		return this.numero;
+	}
+	
+	public Cliente getCliente() {
+		return this.cliente;
+	}
 
 }

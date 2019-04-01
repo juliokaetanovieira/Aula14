@@ -6,16 +6,21 @@ public class Produto {
 	private Double valor;
 	private StatusProduto statusprod;
 	
+	
 	public Produto(String codigo, String nome, Double valor, StatusProduto statusprod) {
 		
 		Checker.naoDeveSerNulo(codigo, "codigo");
 		Checker.naoDeveSerNulo(nome, "nome");
 		Checker.valorDeveSerMaiorQueZero(valor, "valor");
-		Checker.statusDeveSerAtivo(statusprod, "statusprod");
 		
 		this.codigo = codigo;
 		this.nome = nome;
 		this.valor = valor;
+		this.statusprod = StatusProduto.ATIVO;
+	}
+	
+	public void inativarProduto(){
+		this.statusprod = StatusProduto.INATIVO;
 	}
 	
 	public String getCodigo() {

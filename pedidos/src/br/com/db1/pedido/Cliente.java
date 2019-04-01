@@ -6,17 +6,28 @@ public class Cliente {
 	private String cpf;
 	private StatusCliente statuscli;
 	
-	public Cliente(String nome, String cpf, StatusCliente statuscli){
+	public Cliente(String nome, String cpf){
 		
-		Checker.nomeObrigatorio(nome);
+		Checker.naoDeveSerNulo(nome, "nome");
 		Checker.cpfObrigatorio(cpf);
 		Checker.cpfDeveTerOnzeChar(cpf);
-		Checker.statusClienteDeveSerAtivo(statuscli);		
+		Checker.statusDeveSerAtivo(statuscli, "statuscli");		
 
 		this.nome = nome;
 		this.cpf = cpf;
-		this.statuscli = statuscli;
+		this.statuscli = StatusCliente.ATIVO;
 		
+	}
+	
+	public void  inativarCliente(){
+		 this.statuscli = StatusCliente.INATIVO;
+	}
+	
+	public boolean statusCliente(){
+		if(statuscli == StatusCliente.ATIVO){
+			return true;
+		}
+		return false;
 	}
 	
 	public String getNome(){
