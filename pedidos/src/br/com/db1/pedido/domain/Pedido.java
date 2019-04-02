@@ -57,11 +57,13 @@ public class Pedido {
 		this.verificarClienteAtivo();
 		
 		this.statusped = StatusPedido.FATURADO;
+		this.novoHistoricoStatus();
 	}
 	
 	public void cancelar(){
 		this.verificarStatusPedidoParaAlterar();
 		this.statusped = StatusPedido.CANCELADO;
+		this.novoHistoricoStatus();
 	}
 
 	public void reabrir(){
